@@ -5,31 +5,16 @@ import com.google.gson.annotations.SerializedName;
 public class SearchResponse {
 
 	//El nombre de la variable tiene que ser si o si el nombre del objeto json
-	private FieldOficialCompra field_oficial_compra;
-	private FieldOficialVenta field_oficial_venta;
-	private FieldBlueCompra field_blue_compra;
-	private FieldBlueVenta field_blue_venta;
+	private NewDolarValues new_dolar_values;
 	
-	@SerializedName("revision_timestamp")
-	private long revision_timestamp;
+	@SerializedName("timestamp_changed")
+	private long timestamp_changed;
 	
 	public long getTimestamp() {
-		return revision_timestamp;
+		return timestamp_changed;
 	}
 	
-	public FieldOficialCompra getFieldOficialCompra() {
-		return field_oficial_compra;
-	}
-	
-	public FieldOficialVenta getFieldOficialVenta() {
-		return field_oficial_venta;
-	}
-
-	public FieldBlueCompra getFieldBlueCompra() {
-		return field_blue_compra;
-	}
-	
-	public FieldBlueVenta getFieldBlueVenta() {
-		return field_blue_venta;
+	public NewDolarValues getNewDolarValues() {
+		return new_dolar_values;
 	}
 }

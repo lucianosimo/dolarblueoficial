@@ -11,7 +11,7 @@ import java.util.Date;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
@@ -28,7 +28,7 @@ import com.lucianosimo.dolar.model.SearchResponse;
 
 public class MainActivity extends Activity {
 
-	String url = "http://loomalabs.com/servicedolar/node/4";
+	String url = "http://loomalabs.com/servicedolar/dolar/getDolarInfo.json";
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,12 +49,12 @@ public class MainActivity extends Activity {
         	Gson gson = new Gson();
         	Reader reader = new InputStreamReader(source);
         	SearchResponse response = gson.fromJson(reader, SearchResponse.class);
-
-            oficialBuy.setText("$" + format.format(response.getFieldOficialCompra().getUnd().getValue()));
-            oficialSell.setText("$" + format.format(response.getFieldOficialVenta().getUnd().getValue()));
-            blueBuy.setText("$" + format.format(response.getFieldBlueCompra().getUnd().getValue()));
-            blueSell.setText("$" + format.format(response.getFieldBlueVenta().getUnd().getValue()));
-            card.setText("$" + format.format(response.getFieldOficialVenta().getUnd().getValue() * 1.2));
+            
+            oficialBuy.setText("$" + format.format(response.getNewDolarValues().getNewOficialCompra()));
+            oficialSell.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta()));
+            blueBuy.setText("$" + format.format(response.getNewDolarValues().getNewBlueCompra()));
+            blueSell.setText("$" + format.format(response.getNewDolarValues().getNewBlueVenta()));
+            card.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta() * 1.2));
             
             Date date = new Date(response.getTimestamp()*1000);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -74,7 +74,7 @@ public class MainActivity extends Activity {
     
     private InputStream retrieveStream(String url) {
     	DefaultHttpClient client = new DefaultHttpClient();
-    	HttpGet getRequest = new HttpGet(url);
+    	HttpPost getRequest = new HttpPost(url);
         try{
         	HttpResponse getResponse = client.execute(getRequest);
         	final int statusCode = getResponse.getStatusLine().getStatusCode();

@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Service;
@@ -52,17 +52,18 @@ public class UpdateService extends Service {
     	Reader reader = new InputStreamReader(source);
     	SearchResponse response = gson.fromJson(reader, SearchResponse.class);
         
-        updateViews.setTextViewText(R.id.valueBuyOficial, "$" + format.format(response.getFieldOficialCompra().getUnd().getValue()));
-        updateViews.setTextViewText(R.id.valueSellOficial, "$" + format.format(response.getFieldOficialVenta().getUnd().getValue()));
-        updateViews.setTextViewText(R.id.valueBuyBlue, "$" + format.format(response.getFieldBlueCompra().getUnd().getValue()));
-        updateViews.setTextViewText(R.id.valueSellBlue, "$" + format.format(response.getFieldBlueVenta().getUnd().getValue()));
+        updateViews.setTextViewText(R.id.valueBuyOficial, "$" + format.format(response.getNewDolarValues().getNewOficialCompra()));
+        updateViews.setTextViewText(R.id.valueSellOficial, "$" + format.format(response.getNewDolarValues().getNewOficialVenta()));
+        updateViews.setTextViewText(R.id.valueBuyBlue, "$" + format.format(response.getNewDolarValues().getNewBlueCompra()));
+        updateViews.setTextViewText(R.id.valueSellBlue, "$" + format.format(response.getNewDolarValues().getNewBlueVenta()));
         
         return updateViews;
 	}
 	
 	private InputStream retrieveStream(String url) {
     	DefaultHttpClient client = new DefaultHttpClient();
-    	HttpGet getRequest = new HttpGet(url);
+    	//HttpGet getRequest = new HttpGet(url);
+    	HttpPost getRequest = new HttpPost(url);
         try{
         	HttpResponse getResponse = client.execute(getRequest);
         	final int statusCode = getResponse.getStatusLine().getStatusCode();
