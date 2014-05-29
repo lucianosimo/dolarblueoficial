@@ -29,7 +29,7 @@ import com.lucianosimo.dolar.model.SearchResponse;
 
 public class UpdateService extends Service {
 
-	String url = "http://loomalabs.com/servicedolar/node/4";
+	String url = "http://loomalabs.com/servicedolar/dolar/getDolarInfo.json";
 	
 	@Override
 	public void onStart(Intent intent, int startId) {
@@ -62,7 +62,6 @@ public class UpdateService extends Service {
 	
 	private InputStream retrieveStream(String url) {
     	DefaultHttpClient client = new DefaultHttpClient();
-    	//HttpGet getRequest = new HttpGet(url);
     	HttpPost getRequest = new HttpPost(url);
         try{
         	HttpResponse getResponse = client.execute(getRequest);

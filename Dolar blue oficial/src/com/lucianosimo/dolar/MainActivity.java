@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
             card.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta() * 1.2));
             
             Date date = new Date(response.getTimestamp()*1000);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy ' a las ' HH:mm:ss");
             datetime.setText(dateFormat.format(date));
             
         }
