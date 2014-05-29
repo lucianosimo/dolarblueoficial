@@ -1,0 +1,206 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="0,1,2"
+    android:background="@color/backBlue" >
+    
+    <LinearLayout 
+        android:id="@+id/titleRow"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@color/backTitleBlue">
+        <ImageView 
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+    </LinearLayout>
+    
+    <FrameLayout
+       android:id="@+id/headerLine"
+       android:layout_width="fill_parent"
+       android:layout_height="2dp"
+       android:background="@color/black" >
+    </FrameLayout>
+    
+    <TableRow 
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="2dp">
+        <TextView 
+            android:id="@+id/buy"
+            android:text="@string/buy"
+            android:layout_column="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <TextView 
+            android:id="@+id/sell"
+            android:text="@string/sell"
+            android:layout_column="2"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+    </TableRow>
+    
+    <TableRow
+        android:id="@+id/headerBorder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:paddingBottom="20dp"
+        android:background="@color/backBlue">
+        <FrameLayout
+            android:id="@+id/headerLine"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_span="6"
+            android:background="@color/black" >
+        </FrameLayout>
+    </TableRow>
+    
+    <TableRow 
+        android:id="@+id/oficialRow"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backBlue">
+        <TextView 
+            android:id="@+id/oficial"
+            android:text="@string/oficial"
+            android:layout_column="0"
+            android:gravity="left"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <TextView
+        	android:id="@+id/valueBuyOficial"
+        	android:layout_column="1"
+        	android:gravity="center"
+        	android:textColor="@color/black"
+        	android:textSize="20sp"/>
+        <TextView
+        	android:id="@+id/valueSellOficial"
+        	android:layout_column="1"
+        	android:gravity="center"
+        	android:textColor="@color/black"
+        	android:textSize="20sp"/>
+    </TableRow>
+    
+    <TableRow 
+        android:id="@+id/blueRow"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:background="@color/backBlue">
+        <TextView 
+            android:id="@+id/blue"
+            android:text="@string/blue"
+            android:layout_column="0"
+            android:gravity="left"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <TextView
+        	android:id="@+id/valueBuyBlue"
+        	android:layout_column="1"
+        	android:gravity="center"
+        	android:textColor="@color/black"
+        	android:textSize="20sp"/>
+        <TextView
+        	android:id="@+id/valueSellBlue"
+        	android:layout_column="1"
+        	android:gravity="center"
+        	android:textColor="@color/black"
+        	android:textSize="20sp"/>
+    </TableRow>
+
+    
+    <TableLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:stretchColumns="0,1,2">
+        
+   		<TableRow
+        	android:id="@+id/cardRow"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:background="@color/backBlue"
+        	android:paddingTop="20dp">
+        	<TextView 
+         		android:id="@+id/card"
+            	android:text="@string/card"
+            	android:layout_column="0"
+            	android:gravity="left"
+            	android:textColor="@color/black"
+            	android:background="@color/backBlue"
+            	android:textSize="20sp"/>
+        	<TextView 
+            	android:id="@+id/valueCard"
+            	android:layout_column="1"
+            	android:gravity="center"
+            	android:textColor="@color/black"
+            	android:background="@color/backBlue"
+            	android:textSize="20sp"/>   
+    	</TableRow>
+    	
+   		<TableRow
+        	android:id="@+id/bottomBorder"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:paddingTop="20dp"
+        	android:background="@color/backBlue">
+        	<FrameLayout
+	            android:id="@+id/bottomLine"
+    	        android:layout_width="fill_parent"
+        	    android:layout_height="2dp"
+            	android:layout_span="6"
+            	android:background="@color/black" >
+        	</FrameLayout>
+    	</TableRow>
+    	
+   		<TableLayout 
+    		android:layout_width="match_parent"
+    		android:layout_height="match_parent">
+   		
+    		<TableRow
+        		android:id="@+id/oficialUpdateRow"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:gravity="center"
+        		android:background="@color/backBlue"
+        		android:paddingTop="20dp">
+        		<TextView 
+            		android:id="@+id/datetime"
+            		android:text="@string/datetimeTitle"
+            		android:textColor="@color/black"
+            		android:textSize="15sp"/>
+	        </TableRow>
+    	
+	    	<TableRow 
+	        	android:id="@+id/oficialValueUpdateRow"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:gravity="center"
+	        	android:background="@color/backBlue"
+	        	android:paddingTop="15dp">
+	        	<TextView 
+		            android:id="@+id/valueDatetime"
+		            android:layout_gravity="center"
+	            	android:textColor="@color/black"
+	           		android:textSize="15sp"/>
+	    	</TableRow>
+    	
+		</TableLayout>
+   		
+    </TableLayout>
+	
+</TableLayout>

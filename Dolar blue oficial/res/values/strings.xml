@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="app_name">Dolar blue oficial</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Dolar blue oficial app</string>
+    <string name="buy">Compra</string>
+    <string name="sell">Venta</string>
+    <string name="tableTitle">Valores al instante</string>
+    <string name="oficial">Dolar oficial</string>
+    <string name="blue">Dolar blue</string>
+    <string name="datetimeTitle">Ultima actualizacion:</string>
+    <string name="card">Dolar tarjeta:</string>
+
+</resources>
