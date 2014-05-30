@@ -14,6 +14,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,11 +41,11 @@ public class MainActivity extends Activity {
         	this.progressDialog = ProgressDialog.show(this,"Por favor espere...","Estamos actualizando la informacion",true,true);
 			new DownloadTask().execute("Start Download");
 			
-			/*ImageButton refreshButton = (ImageButton) findViewById(R.id.valueBuyBlue);
+			ImageButton refreshButton = (ImageButton) findViewById(R.id.refresh_image);
 			refreshButton.setOnClickListener(new OnClickListener() {
 				
 				public void onClick(View v) {
-					final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "Please wait...", "Sorting movies and retrieving info", true);
+					final ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "Por favor espere...", "Estamos actualizando la informacion", true);
 					
 					new AsyncTask<Void, Void, Void>() {
 						
@@ -58,7 +61,7 @@ public class MainActivity extends Activity {
 				        }
 				    }.execute();
 				}
-			});*/
+			});
             
         } else {        	
         	Toast toast = Toast.makeText(getApplicationContext(), "No posee conexion a internet en este momento", Toast.LENGTH_LONG);

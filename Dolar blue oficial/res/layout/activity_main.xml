@@ -167,6 +167,19 @@
         	</FrameLayout>
     	</TableRow>
     	
+   		<LinearLayout 
+        android:id="@+id/refresh"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:paddingTop="15dp">
+        <ImageButton 
+            android:id="@+id/refresh_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/refresh"/>
+    </LinearLayout>
+    	
    		<TableLayout 
     		android:layout_width="match_parent"
     		android:layout_height="match_parent">
@@ -177,13 +190,13 @@
         		android:layout_height="wrap_content"
         		android:gravity="center"
         		android:background="@color/backBlue"
-        		android:paddingTop="20dp">
+        		android:paddingTop="30dp">
         		<TextView 
             		android:id="@+id/datetime"
             		android:text="@string/datetimeTitle"
             		android:layout_gravity="center"
             		android:textColor="@color/black"
-            		android:textSize="15sp"/>
+            		android:textSize="13sp"/>
 	        </TableRow>
     	
 	    	<TableRow 
@@ -192,12 +205,12 @@
 	        	android:layout_height="wrap_content"
 	        	android:gravity="center"
 	        	android:background="@color/backBlue"
-	        	android:paddingTop="15dp">
+	        	android:paddingTop="13dp">
 	        	<TextView 
 		            android:id="@+id/valueDatetime"
 		            android:layout_gravity="center"
 	            	android:textColor="@color/black"
-	           		android:textSize="15sp"/>
+	           		android:textSize="13sp"/>
 	    	</TableRow>
     	
 		</TableLayout>
