@@ -104,11 +104,27 @@ public class MainActivity extends Activity {
         final TextView oficialSell = (TextView) findViewById(R.id.valueSellOficial);
         final TextView datetime = (TextView) findViewById(R.id.valueDatetime);
         final TextView card = (TextView) findViewById(R.id.valueCard);
+        
+        final ImageView arrowOficialBuy = (ImageView) findViewById(R.id.arrowBuyOficial);
+        final ImageView arrowOficialSell = (ImageView) findViewById(R.id.arrowSellOficial);
+        final ImageView arrowBlueBuy = (ImageView) findViewById(R.id.arrowBuyBlue);
+        final ImageView arrowBlueSell = (ImageView) findViewById(R.id.arrowSellBlue);
+        final ImageView arrowCard = (ImageView) findViewById(R.id.arrowCard);
     	
     	Gson gson = new Gson();
     	InputStream source = FuncHelper.retrieveStream(URL);
     	Reader reader = new InputStreamReader(source);
     	final SearchResponse response = gson.fromJson(reader, SearchResponse.class);
+    	
+    	final double oldOficialbuy = response.getOldDolarValues().getOldOficialCompra();
+    	final double oldOficialSell = response.getOldDolarValues().getOldOficialVenta();
+    	final double oldBlueBuy = response.getOldDolarValues().getOldBlueCompra();
+    	final double oldBlueSell = response.getOldDolarValues().getOldBlueVenta();
+    	
+    	final double newOficialbuy = response.getNewDolarValues().getNewOficialCompra();
+    	final double newOficialSell = response.getNewDolarValues().getNewOficialVenta();
+    	final double newBlueBuy = response.getNewDolarValues().getNewBlueCompra();
+    	final double newBlueSell = response.getNewDolarValues().getNewBlueVenta();
         
     	runOnUiThread(new Runnable() {
 			
@@ -119,6 +135,41 @@ public class MainActivity extends Activity {
 		        blueBuy.setText("$" + format.format(response.getNewDolarValues().getNewBlueCompra()));
 		        blueSell.setText("$" + format.format(response.getNewDolarValues().getNewBlueVenta()));
 		        card.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta() * 1.2));
+		        
+		        if (newOficialbuy < oldOficialbuy) {
+		        	arrowOficialBuy.setImageResource(R.drawable.down);
+		        	arrowCard.setImageResource(R.drawable.down);
+		        } else if (newOficialbuy > oldOficialbuy) {
+		        	arrowOficialBuy.setImageResource(R.drawable.up);
+		        	arrowCard.setImageResource(R.drawable.up);
+		        } else {
+		        	arrowOficialBuy.setImageResource(R.drawable.equal);
+		        	arrowCard.setImageResource(R.drawable.equal);
+		        }
+		        
+		        if (newOficialSell < oldOficialSell) {
+		        	arrowOficialSell.setImageResource(R.drawable.down);
+		        } else if (newOficialSell > oldOficialSell) {
+		        	arrowOficialSell.setImageResource(R.drawable.up);
+		        } else {
+		        	arrowOficialSell.setImageResource(R.drawable.equal);
+		        }
+		        
+		        if (newBlueBuy < oldBlueBuy) {
+		        	arrowBlueBuy.setImageResource(R.drawable.down);
+		        } else if (newBlueBuy > oldBlueBuy) {
+		        	arrowBlueBuy.setImageResource(R.drawable.up);
+		        } else {
+		        	arrowBlueBuy.setImageResource(R.drawable.equal);
+		        }
+		        
+		        if (newBlueSell < oldBlueSell) {
+		        	arrowBlueSell.setImageResource(R.drawable.down);
+		        } else if (newBlueSell > oldBlueSell) {
+		        	arrowBlueSell.setImageResource(R.drawable.up);
+		        } else {
+		        	arrowBlueSell.setImageResource(R.drawable.equal);
+		        }
 		        
 		        Date date = new Date(response.getTimestamp()*1000);
 		        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy ' a las ' HH:mm:ss");

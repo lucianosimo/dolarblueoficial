@@ -1,220 +1,244 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="0,1,2"
-    android:background="@color/backBlue" >
-    
-    <LinearLayout 
-        android:id="@+id/titleRow"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:background="@color/backTitleBlue">
-        <ImageView 
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"/>
+    android:background="@color/white" >
 
-        <TextView
-            android:id="@+id/appTitle"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
-    </LinearLayout>
-    
-    <FrameLayout
-       android:id="@+id/headerLine"
-       android:layout_width="fill_parent"
-       android:layout_height="2dp"
-       android:background="@color/black" >
+	<TextView
+    	android:id="@+id/appTitle"
+    	android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/logo"
+        android:background="@color/backTitleBlue" 
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
+
+	<ImageView 
+    	android:id="@id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        android:background="@color/backTitleBlue" 
+        android:contentDescription="@string/LogoContentDescription"/>
+	
+	<FrameLayout
+        android:id="@+id/headerLine"
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:layout_alignBottom="@id/logo"
+        android:background="@color/black" >
     </FrameLayout>
     
-    <TableRow 
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:paddingBottom="2dp">
-        <TextView 
-            android:id="@+id/buy"
-            android:text="@string/buy"
-            android:layout_column="1"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-        <TextView 
-            android:id="@+id/sell"
-            android:text="@string/sell"
-            android:layout_column="2"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-    </TableRow>
-    
-    <TableRow
-        android:id="@+id/headerBorder"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:paddingBottom="20dp"
-        android:background="@color/backBlue">
-        <FrameLayout
-            android:id="@+id/headerLine"
-            android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:layout_span="6"
-            android:background="@color/black" >
-        </FrameLayout>
-    </TableRow>
-    
-    <TableRow 
-        android:id="@+id/oficialRow"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/backBlue">
-        <TextView 
-            android:id="@+id/oficial"
-            android:text="@string/oficial"
-            android:layout_column="0"
-            android:gravity="left"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-        <TextView
-        	android:id="@+id/valueBuyOficial"
-        	android:layout_column="1"
-        	android:gravity="center"
-        	android:textColor="@color/black"
-        	android:textSize="20sp"/>
-        <TextView
-        	android:id="@+id/valueSellOficial"
-        	android:layout_column="1"
-        	android:gravity="center"
-        	android:textColor="@color/black"
-        	android:textSize="20sp"/>
-    </TableRow>
-    
-    <TableRow 
-        android:id="@+id/blueRow"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:background="@color/backBlue">
-        <TextView 
-            android:id="@+id/blue"
-            android:text="@string/blue"
-            android:layout_column="0"
-            android:gravity="left"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-        <TextView
-        	android:id="@+id/valueBuyBlue"
-        	android:layout_column="1"
-        	android:gravity="center"
-        	android:textColor="@color/black"
-        	android:textSize="20sp"/>
-        <TextView
-        	android:id="@+id/valueSellBlue"
-        	android:layout_column="1"
-        	android:gravity="center"
-        	android:textColor="@color/black"
-        	android:textSize="20sp"/>
-    </TableRow>
+	<TextView
+	    android:id="@+id/sell"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignTop="@id/headerLine"
+	    android:gravity="center"
+	    android:paddingRight="30dp"
+	    android:paddingTop="25dp"
+	    android:text="@string/sell"
+	    android:textColor="@color/black"
+	    android:textSize="20sp"
+	    android:textStyle="bold" />
 
-    
-    <TableLayout 
-    	android:layout_width="match_parent"
-    	android:layout_height="match_parent"
-    	android:stretchColumns="0,1,2">
-        
-   		<TableRow
-        	android:id="@+id/cardRow"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:background="@color/backBlue"
-        	android:paddingTop="20dp">
-        	<TextView 
-         		android:id="@+id/card"
-            	android:text="@string/card"
-            	android:layout_column="0"
-            	android:gravity="left"
-            	android:textColor="@color/black"
-            	android:background="@color/backBlue"
-            	android:textSize="20sp"/>
-        	<TextView 
-            	android:id="@+id/valueCard"
-            	android:layout_column="1"
-            	android:gravity="center"
-            	android:textColor="@color/black"
-            	android:background="@color/backBlue"
-            	android:textSize="20sp"/>   
-    	</TableRow>
-    	
-   		<TableRow
-        	android:id="@+id/bottomBorder"
-        	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
-        	android:paddingTop="20dp"
-        	android:background="@color/backBlue">
-        	<FrameLayout
-	            android:id="@+id/bottomLine"
-    	        android:layout_width="fill_parent"
-        	    android:layout_height="2dp"
-            	android:layout_span="6"
-            	android:background="@color/black" >
-        	</FrameLayout>
-    	</TableRow>
-    	
-   		<LinearLayout 
-        android:id="@+id/refresh"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:gravity="center"
-        android:paddingTop="15dp">
-        <ImageView 
-            android:id="@+id/refresh_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/refresh"/>
-    </LinearLayout>
-    	
-   		<TableLayout 
-    		android:layout_width="match_parent"
-    		android:layout_height="match_parent">
-   		
-    		<TableRow
-        		android:id="@+id/oficialUpdateRow"
-        		android:layout_width="match_parent"
-        		android:layout_height="wrap_content"
-        		android:gravity="center"
-        		android:background="@color/backBlue"
-        		android:paddingTop="30dp">
-        		<TextView 
-            		android:id="@+id/datetime"
-            		android:text="@string/datetimeTitle"
-            		android:layout_gravity="center"
-            		android:textColor="@color/black"
-            		android:textSize="13sp"/>
-	        </TableRow>
-    	
-	    	<TableRow 
-	        	android:id="@+id/oficialValueUpdateRow"
-	        	android:layout_width="match_parent"
-	        	android:layout_height="wrap_content"
-	        	android:gravity="center"
-	        	android:background="@color/backBlue"
-	        	android:paddingTop="13dp">
-	        	<TextView 
-		            android:id="@+id/valueDatetime"
-		            android:layout_gravity="center"
-	            	android:textColor="@color/black"
-	           		android:textSize="13sp"/>
-	    	</TableRow>
-    	
-		</TableLayout>
-   		
-    </TableLayout>
-	
-</TableLayout>
+	<TextView
+	    android:id="@+id/buy"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignTop="@id/headerLine"
+	    android:layout_toLeftOf="@id/sell"
+	    android:gravity="center"
+	    android:paddingBottom="10dp"
+	    android:paddingRight="25dp"
+	    android:paddingTop="25dp"
+	    android:text="@string/buy"
+	    android:textColor="@color/black"
+	    android:textSize="20sp"
+	    android:textStyle="bold" />
+
+	<FrameLayout
+	    android:id="@+id/tableHeaderLine"
+	    android:layout_width="fill_parent"
+	    android:layout_height="3dp"
+		android:layout_below="@id/buy"
+	    android:background="@color/black" >
+	</FrameLayout>
+
+	<TextView
+	    android:id="@+id/oficial"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignTop="@id/tableHeaderLine"
+	    android:paddingLeft="5dp"
+	    android:paddingTop="20dp"
+	    android:text="@string/oficial"
+	    android:textColor="@color/black"
+	    android:textSize="20sp" />
+
+	<TextView
+		android:id="@+id/valueBuyOficial"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_alignBottom="@id/oficial"
+		android:layout_alignLeft="@id/buy"
+		android:textColor="@color/black"
+		android:textSize="20sp"/>
+
+	<ImageView
+	    android:id="@+id/arrowBuyOficial"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@id/valueBuyOficial"
+	    android:layout_toRightOf="@id/valueBuyOficial"
+	    android:contentDescription="@string/LogoContentDescription"
+	    android:paddingLeft="5dp"
+	    android:paddingBottom="4dp"/>
+
+	<TextView
+		android:id="@+id/valueSellOficial"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_alignBottom="@id/oficial"
+		android:layout_alignLeft="@id/sell"
+		android:textColor="@color/black"
+		android:textSize="20sp"/>
+
+	<ImageView
+	    android:id="@+id/arrowSellOficial"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@id/valueSellOficial"
+	    android:layout_toRightOf="@id/valueSellOficial"
+	    android:contentDescription="@string/LogoContentDescription"
+	    android:paddingLeft="5dp"
+	    android:paddingBottom="4dp"/>
+
+	<TextView 
+		android:id="@+id/blue"
+		android:text="@string/blue"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+	    android:layout_below="@id/oficial"
+		android:paddingLeft="5dp"
+	    android:paddingTop="20dp"
+		android:textColor="@color/black"
+		android:textSize="20sp"/>
+
+	<TextView
+		android:id="@+id/valueBuyBlue"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_alignBottom="@id/blue"
+		android:layout_alignLeft="@id/buy"
+		android:textColor="@color/black"
+		android:textSize="20sp"/>
+
+	<ImageView
+	    android:id="@+id/arrowBuyBlue"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@id/valueBuyBlue"
+	    android:layout_toRightOf="@id/valueBuyBlue"
+	    android:contentDescription="@string/LogoContentDescription"
+	    android:paddingLeft="5dp"
+	    android:paddingBottom="4dp"/>
+
+	<TextView
+    	android:id="@+id/valueSellBlue"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_alignBottom="@id/blue"
+		android:layout_alignLeft="@id/sell"
+    	android:textColor="@color/black"
+    	android:textSize="20sp"/>
+
+	<ImageView
+	    android:id="@+id/arrowSellBlue"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@id/valueSellBlue"
+	    android:layout_toRightOf="@id/valueSellBlue"
+	    android:contentDescription="@string/LogoContentDescription"
+	    android:paddingLeft="5dp"
+	    android:paddingBottom="4dp"/>
+
+	<TextView 
+   		android:id="@+id/card"
+      	android:text="@string/card"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+	    android:layout_below="@id/blue"
+		android:paddingLeft="5dp"
+	    android:paddingTop="20dp"
+      	android:textColor="@color/black"
+      	android:textSize="20sp"/>
+
+  	<TextView 
+      	android:id="@+id/valueCard"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_alignBottom="@id/card"
+		android:layout_alignLeft="@id/buy"
+      	android:textColor="@color/black"
+      	android:textSize="20sp"/>  
+
+	<ImageView
+	    android:id="@+id/arrowCard"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@id/valueCard"
+	    android:layout_toRightOf="@id/valueCard"
+	    android:contentDescription="@string/LogoContentDescription"
+	    android:paddingBottom="4dp"
+	    android:paddingLeft="5dp"/>
+
+	<FrameLayout
+	    android:id="@+id/bottomLine"
+	    android:layout_width="fill_parent"
+	    android:layout_height="3dp"
+		android:layout_below="@id/card"
+		android:layout_marginTop="20dp"
+	    android:background="@color/black" >
+	</FrameLayout>
+
+	<ImageView 
+		android:id="@+id/refresh_image"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/bottomLine"
+		android:layout_centerHorizontal="true"
+		android:paddingTop="30dp"
+		android:src="@drawable/refresh"
+		android:contentDescription="@string/LogoContentDescription"/>
+
+	<TextView 
+		android:id="@+id/datetime"
+		android:text="@string/datetimeTitle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/refresh_image"
+		android:layout_centerHorizontal="true"
+		android:paddingTop="30dp"
+		android:textColor="@color/black"
+		android:textSize="13sp"/>
+
+	<TextView 
+		android:id="@+id/valueDatetime"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/datetime"
+		android:layout_centerHorizontal="true"
+		android:paddingTop="15dp"
+		android:textColor="@color/black"
+		android:textSize="13sp"/>
+
+</RelativeLayout>
