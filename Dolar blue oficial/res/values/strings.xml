@@ -9,7 +9,8 @@
     <string name="oficial">Dolar oficial</string>
     <string name="blue">Dolar blue</string>
     <string name="datetimeTitle">Ultima actualizacion:</string>
-    <string name="card">Dolar tarjeta:</string>
+    <string name="card">Dolar tarjeta</string>
+    <string name="ahorro">Dolar ahorro</string>
     <string name="LogoContentDescription">Logo de la aplicacion</string>
 
 </resources>

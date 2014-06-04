@@ -28,7 +28,7 @@
 	<FrameLayout
         android:id="@+id/headerLine"
         android:layout_width="fill_parent"
-        android:layout_height="3dp"
+        android:layout_height="1dp"
         android:layout_alignBottom="@id/logo"
         android:background="@color/black" >
     </FrameLayout>
@@ -65,7 +65,7 @@
 	<FrameLayout
 	    android:id="@+id/tableHeaderLine"
 	    android:layout_width="fill_parent"
-	    android:layout_height="3dp"
+	    android:layout_height="1dp"
 		android:layout_below="@id/buy"
 	    android:background="@color/black" >
 	</FrameLayout>
@@ -80,7 +80,7 @@
 	    android:paddingTop="20dp"
 	    android:text="@string/oficial"
 	    android:textColor="@color/black"
-	    android:textSize="20sp" />
+	    android:textSize="18sp" />
 
 	<TextView
 		android:id="@+id/valueBuyOficial"
@@ -89,7 +89,7 @@
 		android:layout_alignBottom="@id/oficial"
 		android:layout_alignLeft="@id/buy"
 		android:textColor="@color/black"
-		android:textSize="20sp"/>
+		android:textSize="18sp"/>
 
 	<ImageView
 	    android:id="@+id/arrowBuyOficial"
@@ -108,7 +108,7 @@
 		android:layout_alignBottom="@id/oficial"
 		android:layout_alignLeft="@id/sell"
 		android:textColor="@color/black"
-		android:textSize="20sp"/>
+		android:textSize="18sp"/>
 
 	<ImageView
 	    android:id="@+id/arrowSellOficial"
@@ -130,7 +130,7 @@
 		android:paddingLeft="5dp"
 	    android:paddingTop="20dp"
 		android:textColor="@color/black"
-		android:textSize="20sp"/>
+		android:textSize="18sp"/>
 
 	<TextView
 		android:id="@+id/valueBuyBlue"
@@ -139,7 +139,7 @@
 		android:layout_alignBottom="@id/blue"
 		android:layout_alignLeft="@id/buy"
 		android:textColor="@color/black"
-		android:textSize="20sp"/>
+		android:textSize="18sp"/>
 
 	<ImageView
 	    android:id="@+id/arrowBuyBlue"
@@ -158,7 +158,7 @@
 		android:layout_alignBottom="@id/blue"
 		android:layout_alignLeft="@id/sell"
     	android:textColor="@color/black"
-    	android:textSize="20sp"/>
+    	android:textSize="18sp"/>
 
 	<ImageView
 	    android:id="@+id/arrowSellBlue"
@@ -180,7 +180,7 @@
 		android:paddingLeft="5dp"
 	    android:paddingTop="20dp"
       	android:textColor="@color/black"
-      	android:textSize="20sp"/>
+      	android:textSize="18sp"/>
 
   	<TextView 
       	android:id="@+id/valueCard"
@@ -189,7 +189,7 @@
 		android:layout_alignBottom="@id/card"
 		android:layout_alignLeft="@id/buy"
       	android:textColor="@color/black"
-      	android:textSize="20sp"/>  
+      	android:textSize="18sp"/>  
 
 	<ImageView
 	    android:id="@+id/arrowCard"
@@ -200,12 +200,43 @@
 	    android:contentDescription="@string/LogoContentDescription"
 	    android:paddingBottom="4dp"
 	    android:paddingLeft="5dp"/>
+	
+	<TextView 
+   		android:id="@+id/ahorro"
+      	android:text="@string/ahorro"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+	    android:layout_below="@id/card"
+		android:paddingLeft="5dp"
+	    android:paddingTop="20dp"
+      	android:textColor="@color/black"
+      	android:textSize="18sp"/>
+
+  	<TextView 
+      	android:id="@+id/valueAhorro"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_alignBottom="@id/ahorro"
+		android:layout_alignLeft="@id/buy"
+      	android:textColor="@color/black"
+      	android:textSize="18sp"/>  
+
+	<ImageView
+	    android:id="@+id/arrowAhorro"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@id/valueAhorro"
+	    android:layout_toRightOf="@id/valueAhorro"
+	    android:contentDescription="@string/LogoContentDescription"
+	    android:paddingBottom="4dp"
+	    android:paddingLeft="5dp"/>
 
 	<FrameLayout
 	    android:id="@+id/bottomLine"
 	    android:layout_width="fill_parent"
-	    android:layout_height="3dp"
-		android:layout_below="@id/card"
+	    android:layout_height="1dp"
+		android:layout_below="@id/ahorro"
 		android:layout_marginTop="20dp"
 	    android:background="@color/black" >
 	</FrameLayout>

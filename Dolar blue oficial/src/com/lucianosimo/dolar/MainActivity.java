@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,18 +28,90 @@ import com.lucianosimo.dolar.model.SearchResponse;
 public class MainActivity extends Activity {
 
 	private static final String URL = "http://loomalabs.com/servicedolar/dolar/getDolarInfo.json";
+	private static final float cardValueRate = 1.35f;
+	private static final float ahorroValueRate = 1.2f;
+	
 	private final Context context = this;
-	private ProgressDialog progressDialog = null;	
+	private ProgressDialog progressDialog = null;
+	private Typeface tf;
+	private Typeface tfBold;
+	
+	private TextView title;
+	private TextView buy;
+	private TextView sell;
+	private TextView oficialText;
+	private TextView blueText;
+	private TextView cardText;
+	private TextView ahorroText;
+	private TextView datetimeText;
+	
+	private TextView blueBuy;
+    private TextView blueSell;
+    private TextView oficialBuy;
+    private TextView oficialSell;
+    private TextView datetime;
+    private TextView card;
+    private TextView ahorro;
+    
+    private ImageView arrowOficialBuy;
+    private ImageView arrowOficialSell;
+    private ImageView arrowBlueBuy;
+    private ImageView arrowBlueSell;
+    private ImageView arrowCard;
+    private ImageView arrowAhorro;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+        tfBold = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
+        
+        title = (TextView) findViewById(R.id.appTitle);
+        oficialText = (TextView) findViewById(R.id.oficial);
+        blueText = (TextView) findViewById(R.id.blue);
+        cardText = (TextView) findViewById(R.id.card);
+        ahorroText = (TextView) findViewById(R.id.ahorro);
+        datetimeText = (TextView) findViewById(R.id.datetime);
+        buy = (TextView) findViewById(R.id.buy);
+        sell = (TextView) findViewById(R.id.sell);
+        blueBuy = (TextView) findViewById(R.id.valueBuyBlue);
+        blueSell = (TextView) findViewById(R.id.valueSellBlue);
+        oficialBuy = (TextView) findViewById(R.id.valueBuyOficial);
+        oficialSell = (TextView) findViewById(R.id.valueSellOficial);
+        datetime = (TextView) findViewById(R.id.valueDatetime);
+        card = (TextView) findViewById(R.id.valueCard);
+        ahorro = (TextView) findViewById(R.id.valueAhorro);
+        
+        arrowOficialBuy = (ImageView) findViewById(R.id.arrowBuyOficial);
+        arrowOficialSell = (ImageView) findViewById(R.id.arrowSellOficial);
+        arrowBlueBuy = (ImageView) findViewById(R.id.arrowBuyBlue);
+        arrowBlueSell = (ImageView) findViewById(R.id.arrowSellBlue);
+        arrowCard = (ImageView) findViewById(R.id.arrowCard);
+        arrowAhorro = (ImageView) findViewById(R.id.arrowAhorro);
+        
+        title.setTypeface(tfBold);
+        buy.setTypeface(tfBold);
+        sell.setTypeface(tfBold);
+        datetimeText.setTypeface(tfBold);
+        
+        oficialText.setTypeface(tfBold);
+        blueText.setTypeface(tfBold);
+        cardText.setTypeface(tfBold);
+        ahorroText.setTypeface(tfBold);
+
+        blueBuy.setTypeface(tf);
+        blueSell.setTypeface(tf);
+        oficialBuy.setTypeface(tf);
+        oficialSell.setTypeface(tf);
+        datetime.setTypeface(tf);
+        card.setTypeface(tf);
+        ahorro.setTypeface(tf);
         
         if(FuncHelper.isOnline(context)) {
         	
-        	this.progressDialog = ProgressDialog.show(this,"Por favor espere...","Estamos actualizando la informacion",true,true);
+        	this.progressDialog = ProgressDialog.show(this,"Por favor espere...","Estamos actualizando la informacion", true, false);
 			new DownloadTask().execute("Start Download");
 			
 			ImageView refreshButton = (ImageView) findViewById(R.id.refresh_image);
@@ -98,19 +171,6 @@ public class MainActivity extends Activity {
     @SuppressLint("SimpleDateFormat")
 	public void retrieveInfo() {
     	
-    	final TextView blueBuy = (TextView) findViewById(R.id.valueBuyBlue);
-        final TextView blueSell = (TextView) findViewById(R.id.valueSellBlue);
-        final TextView oficialBuy = (TextView) findViewById(R.id.valueBuyOficial);
-        final TextView oficialSell = (TextView) findViewById(R.id.valueSellOficial);
-        final TextView datetime = (TextView) findViewById(R.id.valueDatetime);
-        final TextView card = (TextView) findViewById(R.id.valueCard);
-        
-        final ImageView arrowOficialBuy = (ImageView) findViewById(R.id.arrowBuyOficial);
-        final ImageView arrowOficialSell = (ImageView) findViewById(R.id.arrowSellOficial);
-        final ImageView arrowBlueBuy = (ImageView) findViewById(R.id.arrowBuyBlue);
-        final ImageView arrowBlueSell = (ImageView) findViewById(R.id.arrowSellBlue);
-        final ImageView arrowCard = (ImageView) findViewById(R.id.arrowCard);
-    	
     	Gson gson = new Gson();
     	InputStream source = FuncHelper.retrieveStream(URL);
     	Reader reader = new InputStreamReader(source);
@@ -134,17 +194,21 @@ public class MainActivity extends Activity {
 		        oficialSell.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta()));
 		        blueBuy.setText("$" + format.format(response.getNewDolarValues().getNewBlueCompra()));
 		        blueSell.setText("$" + format.format(response.getNewDolarValues().getNewBlueVenta()));
-		        card.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta() * 1.2));
+		        card.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta() * cardValueRate));
+		        ahorro.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta() * ahorroValueRate));
 		        
 		        if (newOficialbuy < oldOficialbuy) {
 		        	arrowOficialBuy.setImageResource(R.drawable.down);
 		        	arrowCard.setImageResource(R.drawable.down);
+		        	arrowAhorro.setImageResource(R.drawable.down);
 		        } else if (newOficialbuy > oldOficialbuy) {
 		        	arrowOficialBuy.setImageResource(R.drawable.up);
 		        	arrowCard.setImageResource(R.drawable.up);
+		        	arrowAhorro.setImageResource(R.drawable.up);
 		        } else {
 		        	arrowOficialBuy.setImageResource(R.drawable.equal);
 		        	arrowCard.setImageResource(R.drawable.equal);
+		        	arrowAhorro.setImageResource(R.drawable.equal);
 		        }
 		        
 		        if (newOficialSell < oldOficialSell) {
