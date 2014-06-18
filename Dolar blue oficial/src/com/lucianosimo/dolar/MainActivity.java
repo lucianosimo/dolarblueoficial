@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.value_tab);
         
         tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         tfBold = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
