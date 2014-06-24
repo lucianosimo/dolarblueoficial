@@ -10,9 +10,12 @@ import java.util.Date;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +63,19 @@ public class ValueTab extends Fragment{
     private ImageView arrowBlueSell;
     private ImageView arrowCard;
     private ImageView arrowAhorro;
+    
+    private float oldOficialbuy;
+    private float oldOficialSell;
+    private float oldBlueBuy;
+    private float oldBlueSell;
+	
+    private float newOficialbuy;
+    private float newOficialSell;
+    private float newBlueBuy;
+    private float newBlueSell;
+    
+    private Date date = null;
+    
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -135,7 +151,8 @@ public class ValueTab extends Fragment{
 						
 				        @Override
 				        protected Void doInBackground(Void... params) {
-				            retrieveInfo();
+				        	cargarValoresOnline();
+				            mostrarInfo();
 				            return null;
 				        }
 	
@@ -149,6 +166,8 @@ public class ValueTab extends Fragment{
 	        
 			
 		} else {
+			cargarValoresOffline();
+			mostrarInfo();
 			Toast toast = Toast.makeText(context, "No posee conexion a internet en este momento", Toast.LENGTH_LONG);
     		toast.show();
 		}
@@ -159,7 +178,8 @@ public class ValueTab extends Fragment{
 
 		@Override
 		protected Object doInBackground(String... params) {
-			retrieveInfo();
+			cargarValoresOnline();
+			mostrarInfo();
 			return null;
 		}
 		
@@ -175,33 +195,19 @@ public class ValueTab extends Fragment{
     
     
     @SuppressLint("SimpleDateFormat")
-	public void retrieveInfo() {
-    	
-    	Gson gson = new Gson();
-    	InputStream source = FuncHelper.retrieveStream(URL);
-    	Reader reader = new InputStreamReader(source);
-    	final SearchResponse response = gson.fromJson(reader, SearchResponse.class);
-    	
-    	final double oldOficialbuy = response.getOldDolarValues().getOldOficialCompra();
-    	final double oldOficialSell = response.getOldDolarValues().getOldOficialVenta();
-    	final double oldBlueBuy = response.getOldDolarValues().getOldBlueCompra();
-    	final double oldBlueSell = response.getOldDolarValues().getOldBlueVenta();
-    	
-    	final double newOficialbuy = response.getNewDolarValues().getNewOficialCompra();
-    	final double newOficialSell = response.getNewDolarValues().getNewOficialVenta();
-    	final double newBlueBuy = response.getNewDolarValues().getNewBlueCompra();
-    	final double newBlueSell = response.getNewDolarValues().getNewBlueVenta();
-        
+	public void mostrarInfo() {
+ 
     	getActivity().runOnUiThread(new Runnable() {
 			
 			public void run() {
 				DecimalFormat format = new DecimalFormat("0.00");
-				oficialBuy.setText("$" + format.format(response.getNewDolarValues().getNewOficialCompra()));
-		        oficialSell.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta()));
-		        blueBuy.setText("$" + format.format(response.getNewDolarValues().getNewBlueCompra()));
-		        blueSell.setText("$" + format.format(response.getNewDolarValues().getNewBlueVenta()));
-		        card.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta() * cardValueRate));
-		        ahorro.setText("$" + format.format(response.getNewDolarValues().getNewOficialVenta() * ahorroValueRate));
+				
+				oficialBuy.setText("$" + format.format(newOficialbuy));
+		        oficialSell.setText("$" + format.format(newOficialSell));
+		        blueBuy.setText("$" + format.format(newBlueBuy));
+		        blueSell.setText("$" + format.format(newBlueSell));
+		        card.setText("$" + format.format(newOficialSell * cardValueRate));
+		        ahorro.setText("$" + format.format(newOficialSell * ahorroValueRate));
 		        
 		        if (newOficialbuy < oldOficialbuy) {
 		        	arrowOficialBuy.setImageResource(R.drawable.down);
@@ -241,11 +247,63 @@ public class ValueTab extends Fragment{
 		        	arrowBlueSell.setImageResource(R.drawable.equal);
 		        }
 		        
-		        Date date = new Date(response.getTimestamp()*1000);
 		        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy ' a las ' HH:mm:ss");
 		        datetime.setText(dateFormat.format(date));
 			}
 		});
 
     }
+    
+    private void cargarValoresOffline() {
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		long timestamp = sharedPreferences.getLong("timestamp", 0);
+		oldOficialbuy = sharedPreferences.getFloat("oldOficialbuy", 0);
+		oldOficialSell = sharedPreferences.getFloat("oldOficialSell", 0);
+		oldBlueBuy = sharedPreferences.getFloat("oldBlueBuy", 0);
+		oldBlueSell = sharedPreferences.getFloat("oldBlueSell", 0);
+		newOficialbuy = sharedPreferences.getFloat("newOficialbuy", 0);
+		newOficialSell = sharedPreferences.getFloat("newOficialSell", 0);
+		newBlueBuy = sharedPreferences.getFloat("newBlueBuy", 0);
+		newBlueSell = sharedPreferences.getFloat("newBlueSell", 0);
+		
+		date = new Date(timestamp);
+	}
+    
+    private void cargarValoresOnline() {
+    	Gson gson = new Gson();
+    	InputStream source = FuncHelper.retrieveStream(URL);
+    	Reader reader = new InputStreamReader(source);
+    	final SearchResponse response = gson.fromJson(reader, SearchResponse.class);
+    	
+    	oldOficialbuy = response.getOldDolarValues().getOldOficialCompra();
+    	oldOficialSell = response.getOldDolarValues().getOldOficialVenta();
+    	oldBlueBuy = response.getOldDolarValues().getOldBlueCompra();
+    	oldBlueSell = response.getOldDolarValues().getOldBlueVenta();
+    	
+    	newOficialbuy = response.getNewDolarValues().getNewOficialCompra();
+    	newOficialSell = response.getNewDolarValues().getNewOficialVenta();
+    	newBlueBuy = response.getNewDolarValues().getNewBlueCompra();
+    	newBlueSell = response.getNewDolarValues().getNewBlueVenta();
+    	
+    	long timestamp = response.getTimestamp()*1000;
+    	
+    	date = new Date(timestamp);    	
+    	
+    	grabarValores(newOficialbuy, newOficialSell, newBlueBuy, newBlueSell, oldOficialbuy, oldOficialSell, oldBlueBuy, oldBlueSell, timestamp);
+    }
+	
+	private void grabarValores(float newOficialbuy, float newOficialSell, float newBlueBuy, float newBlueSell, float oldOficialbuy, float oldOficialSell, float oldBlueBuy, float oldBlueSell, long timestamp) {
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		Editor editor = sharedPreferences.edit();
+		editor.putFloat("newOficialbuy", newOficialbuy);
+		editor.putFloat("newOficialSell", newOficialSell);
+		editor.putFloat("newBlueBuy", newBlueBuy);
+		editor.putFloat("newBlueSell", newBlueSell);
+		editor.putFloat("oldOficialbuy", oldOficialbuy);
+		editor.putFloat("oldOficialSell", oldOficialSell);
+		editor.putFloat("oldBlueBuy", oldBlueBuy);
+		editor.putFloat("oldBlueSell", oldBlueSell);
+		editor.putLong("timestamp", timestamp);
+		editor.commit();
+	}
 }

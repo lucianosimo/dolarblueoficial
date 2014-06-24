@@ -5,30 +5,30 @@ import com.google.gson.annotations.SerializedName;
 public class NewDolarValues {
 	
 	@SerializedName("new_oficial_compra")
-	private double new_oficial_compra;
+	private float new_oficial_compra;
 	
 	@SerializedName("new_oficial_venta")
-	private double new_oficial_venta;
+	private float new_oficial_venta;
 	
 	@SerializedName("new_blue_compra")
-	private double new_blue_compra;
+	private float new_blue_compra;
 	
 	@SerializedName("new_blue_venta")
-	private double new_blue_venta;
+	private float new_blue_venta;
 	
-	public double getNewOficialCompra() {
+	public float getNewOficialCompra() {
 		return new_oficial_compra;
 	}
 	
-	public double getNewOficialVenta() {
+	public float getNewOficialVenta() {
 		return new_oficial_venta;
 	}
 	
-	public double getNewBlueCompra() {
+	public float getNewBlueCompra() {
 		return new_blue_compra;
 	}
 	
-	public double getNewBlueVenta() {
+	public float getNewBlueVenta() {
 		return new_blue_venta;
 	}
 
