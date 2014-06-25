@@ -5,14 +5,64 @@
     android:background="@color/white" >
     
     <TextView
-	    android:id="@+id/passedValue"
+	    android:id="@+id/labelConversor"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:gravity="center"
-	    android:paddingRight="30dp"
-	    android:paddingTop="15dp"
+	    android:layout_alignParentTop="true"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="15dp"
 	    android:textColor="@color/black"
 	    android:textSize="20sp"
-	    android:textStyle="bold" />
+	    android:textStyle="bold"
+	    android:text="Pesos a dolares" />
+    
+    <EditText
+        android:id="@+id/editValor"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelConversor"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:inputType="numberDecimal"/>
+    
+    
+    <TextView
+	    android:id="@+id/labelIngresoValor"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@id/editValor"
+		android:layout_alignParentLeft="true"
+		android:layout_marginLeft="40dp"
+	    android:paddingBottom="10dp"
+	    android:gravity="center"
+	    android:textColor="@color/black"
+	    android:textSize="20sp"
+	    android:textStyle="bold"
+	    android:text="$" />
+    
+    <TextView
+	    android:id="@+id/labelConversorOficial"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="15dp"
+	    android:layout_below="@id/editValor"
+	    android:textColor="@color/black"
+	    android:textSize="20sp"
+	    android:textStyle="bold"
+	    android:text="Oficial" />
+    
+    <TextView
+	    android:id="@+id/valueConversorOficial"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="15dp"
+	    android:layout_below="@id/labelConversorOficial"
+	    android:textColor="@color/black"
+	    android:textSize="20sp"
+	    android:textStyle="bold"/>
     
 </RelativeLayout>

@@ -8,12 +8,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class CalcTab extends Fragment{
 
-	private TextView passedValue;
+	private TextView valueConversorOficial;
+	private EditText editValor;
 	private Context context = null;
 	
 	@Override
@@ -34,8 +36,10 @@ public class CalcTab extends Fragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 		float newOficialSell = sharedPreferences.getFloat("newOficialSell", 0);
-		passedValue = (TextView) getView().findViewById(R.id.passedValue);
-		passedValue.setText("Valor de oficial venta: " + newOficialSell);
-		super.onViewCreated(view, savedInstanceState);
+		/*valueConversorOficial = (TextView) getView().findViewById(R.id.valueConversorOficial);
+		editValor = (EditText) getView().findViewById(R.id.editValor);
+		float valorOficial = Float.parseFloat(editValor.getText().toString()) * newOficialSell;
+		valueConversorOficial.setText("" + valorOficial);
+		super.onViewCreated(view, savedInstanceState);*/
 	}
 }
