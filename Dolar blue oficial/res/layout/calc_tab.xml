@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:background="@color/white" >
     
+    <ImageView
+        android:id="@+id/tab1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
+	    android:layout_marginLeft="67dp"
+	    android:layout_marginTop="13dp"
+	    android:src="@drawable/button_selected"/>
+    
     <TextView
 	    android:id="@+id/labelDolaresPesos"
 	    android:layout_width="wrap_content"
@@ -15,6 +24,14 @@
 	    android:textSize="12sp"
 	    android:textStyle="bold"
 	    android:text="Dolares a Pesos" />
+    
+    <ImageView
+        android:id="@+id/tab2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="13dp"
+	    android:layout_toRightOf="@id/labelDolaresPesos"
+	    android:src="@drawable/button_unselected"/>
     
     <TextView
 	    android:id="@+id/labelPesosDolares"

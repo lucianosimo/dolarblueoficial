@@ -21,6 +21,10 @@ public class CalcTab extends Fragment{
 
 	private TextView valueConversorOficial;
 	private TextView labelConversorOficial;
+	private TextView labelDolaresPesos;
+	private TextView labelPesosDolares;
+	private ImageView tab1;
+	private ImageView tab2;
 	private EditText editValor;
 	
 	private float valorOficial;
@@ -50,19 +54,72 @@ public class CalcTab extends Fragment{
 		
 		valueConversorOficial = (TextView) getView().findViewById(R.id.valueConversorOficial);
 		labelConversorOficial = (TextView) getView().findViewById(R.id.labelConversorOficial);
-		labelConversorOficial.setText("Pesos");
-		editValor = (EditText) getView().findViewById(R.id.editValor);		
+		labelDolaresPesos = (TextView) getView().findViewById(R.id.labelDolaresPesos);
+		labelPesosDolares = (TextView) getView().findViewById(R.id.labelPesosDolares);
+		tab1 = (ImageView) getView().findViewById(R.id.tab1);
+		tab2 = (ImageView) getView().findViewById(R.id.tab2);
+		final ImageView calcularButton = (ImageView) getView().findViewById(R.id.calcular_imagen);
 		
-		ImageView calcularButton = (ImageView) getView().findViewById(R.id.calcular_imagen);
-		calcularButton.setOnClickListener(new OnClickListener() {
+		labelDolaresPesos.setOnClickListener(new OnClickListener() {
 			
+			@Override
 			public void onClick(View v) {
-				InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(editValor.getWindowToken(), 0);
-				valorOficial = Float.parseFloat(editValor.getText().toString()) * newOficialSell;
-				valueConversorOficial.setText("$ " + format.format(valorOficial));				
+				
+				labelConversorOficial.setText("Pesos");
+				editValor = (EditText) getView().findViewById(R.id.editValor);
+				tab1.setImageResource(R.drawable.button_selected);
+				tab2.setImageResource(R.drawable.button_unselected);
+
+				calcularButton.setOnClickListener(new OnClickListener() {
+					
+					public void onClick(View v) {
+						InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+						imm.hideSoftInputFromWindow(editValor.getWindowToken(), 0);
+						String stringValue = editValor.getText().toString();
+						if (stringValue.equals("")) {
+							valorOficial = 0;
+							valueConversorOficial.setText("$ " + format.format(valorOficial));
+						} else {					
+							valorOficial = Float.parseFloat(stringValue) * newOficialSell;
+							valueConversorOficial.setText("$ " + format.format(valorOficial));
+						}
+										
+										
+					}
+				});				
 			}
 		});
+		
+		labelPesosDolares.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				labelConversorOficial.setText("Dolares");
+				editValor = (EditText) getView().findViewById(R.id.editValor);
+				tab1.setImageResource(R.drawable.button_unselected);
+				tab2.setImageResource(R.drawable.button_selected);
+
+				calcularButton.setOnClickListener(new OnClickListener() {
+					
+					public void onClick(View v) {
+						InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+						imm.hideSoftInputFromWindow(editValor.getWindowToken(), 0);
+						String stringValue = editValor.getText().toString();
+						if (stringValue.equals("")) {
+							valorOficial = 0;
+							valueConversorOficial.setText("$ " + format.format(valorOficial));
+						} else {					
+							valorOficial = Float.parseFloat(stringValue) / newOficialSell;
+							valueConversorOficial.setText("$ " + format.format(valorOficial));
+						}
+										
+										
+					}
+				});				
+			}
+		});
+		
 		
 		super.onViewCreated(view, savedInstanceState);
 	}

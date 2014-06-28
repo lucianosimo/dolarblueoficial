@@ -30,13 +30,8 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
 	
 	private class TabInfo {
         private String tag;
-        /*private Class<?> clss;
-        private Bundle args;
-        private Fragment fragment;*/
         TabInfo(String tag, Class<?> clazz, Bundle args) {
             this.tag = tag;
-           /* this.clss = clazz;
-            this.args = args;*/
         }
    }
 	
@@ -142,8 +137,7 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
     public void onPageScrollStateChanged(int state) {
     	
     }
-    
-    private void setupTab(final View view, final String tag, int image_resource) {
+        private void setupTab(final View view, final String tag, int image_resource) {
 		View tabview = createTabView(mTabHost.getContext(), image_resource);
 		TabSpec setContent = mTabHost.newTabSpec(tag).setIndicator(tabview).setContent(new TabContentFactory() {
 			public View createTabContent(String tag) {
