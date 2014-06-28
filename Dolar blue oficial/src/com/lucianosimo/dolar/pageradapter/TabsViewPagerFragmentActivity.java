@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
@@ -29,13 +30,13 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
 	
 	private class TabInfo {
         private String tag;
-        private Class<?> clss;
+        /*private Class<?> clss;
         private Bundle args;
-        private Fragment fragment;
+        private Fragment fragment;*/
         TabInfo(String tag, Class<?> clazz, Bundle args) {
             this.tag = tag;
-            this.clss = clazz;
-            this.args = args;
+           /* this.clss = clazz;
+            this.args = args;*/
         }
    }
 	
@@ -106,20 +107,21 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
         mTabHost = (TabHost)findViewById(android.R.id.tabhost);
         mTabHost.setup();
         TabInfo tabInfo = null;
+        int image_resource;
+        
         mTabHost.getTabWidget().setDividerDrawable(R.drawable.separator);    
         tabInfo = new TabInfo("Tab1", ValueTab.class, args);
-        setupTab(new TextView(this), "");
+        image_resource = R.drawable.value_tab_image;
+        setupTab(new TextView(this), "ValueTab", image_resource);
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
+        
         tabInfo = new TabInfo("Tab1", CalcTab.class, args);
-        setupTab(new TextView(this), "");
+        image_resource = R.drawable.calc_tab_image;
+        setupTab(new TextView(this), "CalcTab", image_resource);
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
+        
         mTabHost.setOnTabChangedListener(this);
     }
- 
-    /*private static void AddTab(TabsViewPagerFragmentActivity activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
-        tabSpec.setContent(activity.new TabFactory(activity));
-        tabHost.addTab(tabSpec);
-    }*/
  
     public void onTabChanged(String tag) {
         int pos = this.mTabHost.getCurrentTab();
@@ -141,8 +143,8 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
     	
     }
     
-    private void setupTab(final View view, final String tag) {
-		View tabview = createTabView(mTabHost.getContext(), tag);
+    private void setupTab(final View view, final String tag, int image_resource) {
+		View tabview = createTabView(mTabHost.getContext(), image_resource);
 		TabSpec setContent = mTabHost.newTabSpec(tag).setIndicator(tabview).setContent(new TabContentFactory() {
 			public View createTabContent(String tag) {
 				return view;
@@ -151,10 +153,10 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
 		mTabHost.addTab(setContent);
 	}
     
-    private static View createTabView(final Context context, final String text) {
+    private static View createTabView(final Context context, int image_resource) {
     	View view = LayoutInflater.from(context).inflate(R.layout.tabs_bg, null);
-    	TextView tv = (TextView) view.findViewById(R.id.tabsText);
-    	tv.setText(text);
+    	ImageView tab_image = (ImageView) view.findViewById(R.id.tab_image);
+    	tab_image.setBackgroundResource(image_resource);
     	return view;
     }
  
