@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
+import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
 
 import com.lucianosimo.dolar.CalcTab;
 import com.lucianosimo.dolar.R;
@@ -103,18 +106,20 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
         mTabHost = (TabHost)findViewById(android.R.id.tabhost);
         mTabHost.setup();
         TabInfo tabInfo = null;
-        TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tab1").setIndicator("Value"), ( tabInfo = new TabInfo("Tab1", ValueTab.class, args)));
+        mTabHost.getTabWidget().setDividerDrawable(R.drawable.separator);    
+        tabInfo = new TabInfo("Tab1", ValueTab.class, args);
+        setupTab(new TextView(this), "");
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
-        TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tab2").setIndicator("Calc"), ( tabInfo = new TabInfo("Tab2", CalcTab.class, args)));
+        tabInfo = new TabInfo("Tab1", CalcTab.class, args);
+        setupTab(new TextView(this), "");
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
-
         mTabHost.setOnTabChangedListener(this);
     }
  
-    private static void AddTab(TabsViewPagerFragmentActivity activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
+    /*private static void AddTab(TabsViewPagerFragmentActivity activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
         tabSpec.setContent(activity.new TabFactory(activity));
         tabHost.addTab(tabSpec);
-    }
+    }*/
  
     public void onTabChanged(String tag) {
         int pos = this.mTabHost.getCurrentTab();
@@ -134,6 +139,23 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
     @Override
     public void onPageScrollStateChanged(int state) {
     	
+    }
+    
+    private void setupTab(final View view, final String tag) {
+		View tabview = createTabView(mTabHost.getContext(), tag);
+		TabSpec setContent = mTabHost.newTabSpec(tag).setIndicator(tabview).setContent(new TabContentFactory() {
+			public View createTabContent(String tag) {
+				return view;
+			}
+		});
+		mTabHost.addTab(setContent);
+	}
+    
+    private static View createTabView(final Context context, final String text) {
+    	View view = LayoutInflater.from(context).inflate(R.layout.tabs_bg, null);
+    	TextView tv = (TextView) view.findViewById(R.id.tabsText);
+    	tv.setText(text);
+    	return view;
     }
  
 }
