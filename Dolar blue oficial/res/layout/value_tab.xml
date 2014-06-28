@@ -218,7 +218,7 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@id/bottomLine"
 		android:layout_centerHorizontal="true"
-		android:paddingTop="30dp"
+		android:paddingTop="25dp"
 		android:src="@drawable/refresh"
 		android:contentDescription="@string/LogoContentDescription"/>
 
@@ -229,7 +229,7 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@id/refresh_image"
 		android:layout_centerHorizontal="true"
-		android:paddingTop="30dp"
+		android:paddingTop="25dp"
 		android:textColor="@color/black"
 		android:textSize="13sp"/>
 
@@ -239,7 +239,7 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@id/datetime"
 		android:layout_centerHorizontal="true"
-		android:paddingTop="15dp"
+		android:paddingTop="10dp"
 		android:textColor="@color/black"
 		android:textSize="13sp"/>
 
