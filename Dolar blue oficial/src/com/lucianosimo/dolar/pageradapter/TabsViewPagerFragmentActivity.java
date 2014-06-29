@@ -18,6 +18,7 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 import com.lucianosimo.dolar.CalcTab;
+import com.lucianosimo.dolar.ChartTab;
 import com.lucianosimo.dolar.R;
 import com.lucianosimo.dolar.ValueTab;
 
@@ -88,6 +89,7 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
         List<Fragment> fragments = new Vector<Fragment>();
         fragments.add(Fragment.instantiate(this, ValueTab.class.getName()));
         fragments.add(Fragment.instantiate(this, CalcTab.class.getName()));
+        fragments.add(Fragment.instantiate(this, ChartTab.class.getName()));
         this.mPagerAdapter  = new PagerAdapter(super.getSupportFragmentManager(), fragments);
         //
         this.mViewPager = (ViewPager)super.findViewById(R.id.viewpager);
@@ -110,9 +112,14 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
         setupTab(new TextView(this), "ValueTab", image_resource);
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         
-        tabInfo = new TabInfo("Tab1", CalcTab.class, args);
+        tabInfo = new TabInfo("Tab2", CalcTab.class, args);
         image_resource = R.drawable.calc_tab_image;
         setupTab(new TextView(this), "CalcTab", image_resource);
+        this.mapTabInfo.put(tabInfo.tag, tabInfo);
+        
+        tabInfo = new TabInfo("Tab3", ChartTab.class, args);
+        image_resource = R.drawable.chart_tab_image;
+        setupTab(new TextView(this), "ChartTab", image_resource);
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         
         mTabHost.setOnTabChangedListener(this);
