@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:background="@color/white" >
     
-    <TextView
-        android:id="@+id/chart"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/graphContainer"
         android:layout_width="wrap_content"
-        android:layout_alignParentTop="true"
-	    android:layout_marginLeft="20dp"
-	    android:layout_marginTop="15dp"
-	    android:textColor="@color/black"
-	    android:text="Chart Tab"/>
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:background="@color/white" >
+    </LinearLayout>
     
 </RelativeLayout>
