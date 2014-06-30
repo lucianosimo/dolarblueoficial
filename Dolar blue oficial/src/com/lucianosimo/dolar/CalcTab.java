@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 public class CalcTab extends Fragment{
 
+	private TextView labelIngresoValor;
 	private TextView valueConversorOficial;
 	private TextView labelConversorOficial;
 	private TextView labelConversorBlue;
@@ -39,6 +41,7 @@ public class CalcTab extends Fragment{
 	private float newBlueSell;
 
 	private Context context = null;
+	private Typeface tf;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,11 +61,14 @@ public class CalcTab extends Fragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 		final DecimalFormat format = new DecimalFormat("0.00");
+		tf = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
+
 		newOficialSell = sharedPreferences.getFloat("newOficialSell", 0);
 		newBlueSell = sharedPreferences.getFloat("newBlueSell", 0);
 		
 		editValor = (EditText) getView().findViewById(R.id.editValor);
 		editValor.setText("");
+		labelIngresoValor = (TextView) getView().findViewById(R.id.labelIngresoValor);
 		valueConversorOficial = (TextView) getView().findViewById(R.id.valueConversorOficial);
 		labelConversorOficial = (TextView) getView().findViewById(R.id.labelConversorOficial);
 		button_dap = (ImageView) getView().findViewById(R.id.tab1);
@@ -73,6 +79,15 @@ public class CalcTab extends Fragment{
 		labelConversorCard = (TextView) getView().findViewById(R.id.labelConversorCard);
 		valueConversorCard = (TextView) getView().findViewById(R.id.valueConversorCard);
 		lineConversorCard = (FrameLayout) getView().findViewById(R.id.lineValue3);
+		
+		editValor.setTypeface(tf);
+		labelIngresoValor.setTypeface(tf);
+		labelConversorOficial.setTypeface(tf);
+		valueConversorOficial.setTypeface(tf);
+		labelConversorBlue.setTypeface(tf);
+		valueConversorBlue.setTypeface(tf);
+		labelConversorCard.setTypeface(tf);
+		valueConversorCard.setTypeface(tf);
 		
 		final ImageView calcularButton = (ImageView) getView().findViewById(R.id.calcular_imagen);
 		calcularButton.setOnClickListener(new OnClickListener() {

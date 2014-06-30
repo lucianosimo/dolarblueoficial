@@ -117,6 +117,8 @@ public class ChartTab extends Fragment{
         mSeriesRendered.setYLabelsAlign(Align.RIGHT);
         mSeriesRendered.setYLabelsPadding(1);
         
+        mSeriesRendered.setLegendTextSize(20);
+        
         mSeriesRendered.addSeriesRenderer(rendererOficial);
         mSeriesRendered.addSeriesRenderer(rendererBlue);
     }
