@@ -8,9 +8,12 @@ import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +22,12 @@ import android.widget.LinearLayout;
 
 public class ChartTab extends Fragment{
 	
+	private Context context;
 	private GraphicalView mChartView;
+	private String averageOficial;
+	private String averageBlue;
+	private double[] oficialY = new double[12];
+	private double[] blueY = new double[12];
 
     public ChartTab() {
 
@@ -43,13 +51,26 @@ public class ChartTab extends Fragment{
         displayChart();
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+    	super.onCreate(savedInstanceState);
+    	context = getActivity();
+    }
 
 
     private void initializeChartValues() {
+    	SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+    	averageOficial = sharedPreferences.getString("averageOficial", "");
+		averageBlue = sharedPreferences.getString("averageBlue", "");
+    	
         int[] x = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-        double[] oficialY = {5.3, 5.4, 5.6, 5.7, 6.0, 6.1, 6.5, 6.6, 6.7, 6.9, 7.1, 7.4};
-        double[] blueY = {8.1, 8.3, 8.8, 8.6, 8.9, 9.3, 9.6, 9.4, 9.9, 10.5, 10.7, 11.2};
+        String[] splitedOficial = averageOficial.split(";");
+        String[] splitedBlue = averageBlue.split(";");
 
+        for (int i = 0; i < splitedOficial.length; i++) {
+        	oficialY[i] = Double.parseDouble(splitedOficial[i]);
+        	blueY[i] = Double.parseDouble(splitedBlue[i]);
+        }
         serieOficial = new TimeSeries("Valor promedio oficial (ultimos 12 meses)");
         for (int i = 0; i < x.length; i++) {
         	serieOficial.add(x[i], oficialY[i]);

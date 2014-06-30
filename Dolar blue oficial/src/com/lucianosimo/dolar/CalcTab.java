@@ -37,7 +37,7 @@ public class CalcTab extends Fragment{
 	private float valorBlue;
 	private float newOficialSell;
 	private float newBlueSell;
-	
+
 	private Context context = null;
 	
 	@Override

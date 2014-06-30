@@ -11,6 +11,12 @@ public class SearchResponse {
 	@SerializedName("timestamp_changed")
 	private long timestamp_changed;
 	
+	@SerializedName("averages_oficial")
+	private String averages_oficial;
+	
+	@SerializedName("averages_blue")
+	private String averages_blue;
+	
 	public long getTimestamp() {
 		return timestamp_changed;
 	}
@@ -21,5 +27,13 @@ public class SearchResponse {
 	
 	public OldDolarValues getOldDolarValues() {
 		return old_dolar_values;
+	}
+	
+	public String getAverageOficial() {
+		return averages_oficial;
+	}
+	
+	public String getAverageBlue() {
+		return averages_blue;
 	}
 }

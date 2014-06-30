@@ -73,6 +73,8 @@ public class ValueTab extends Fragment{
     private float newOficialSell;
     private float newBlueBuy;
     private float newBlueSell;
+    private String averageOficial;
+    private String averageBlue;
     
     private Date date = null;
     
@@ -256,6 +258,7 @@ public class ValueTab extends Fragment{
     
     private void cargarValoresOffline() {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		
 		long timestamp = sharedPreferences.getLong("timestamp", 0);
 		oldOficialbuy = sharedPreferences.getFloat("oldOficialbuy", 0);
 		oldOficialSell = sharedPreferences.getFloat("oldOficialSell", 0);
@@ -265,6 +268,8 @@ public class ValueTab extends Fragment{
 		newOficialSell = sharedPreferences.getFloat("newOficialSell", 0);
 		newBlueBuy = sharedPreferences.getFloat("newBlueBuy", 0);
 		newBlueSell = sharedPreferences.getFloat("newBlueSell", 0);
+		averageOficial = sharedPreferences.getString("averageOficial", "");
+		averageBlue = sharedPreferences.getString("averageBlue", "");
 		
 		date = new Date(timestamp);
 	}
@@ -286,13 +291,15 @@ public class ValueTab extends Fragment{
     	newBlueSell = response.getNewDolarValues().getNewBlueVenta();
     	
     	long timestamp = response.getTimestamp()*1000;
+    	averageOficial = response.getAverageOficial();
+    	averageBlue = response.getAverageBlue();
     	
     	date = new Date(timestamp);    	
     	
-    	grabarValores(newOficialbuy, newOficialSell, newBlueBuy, newBlueSell, oldOficialbuy, oldOficialSell, oldBlueBuy, oldBlueSell, timestamp);
+    	grabarValores(newOficialbuy, newOficialSell, newBlueBuy, newBlueSell, oldOficialbuy, oldOficialSell, oldBlueBuy, oldBlueSell, timestamp, averageOficial, averageBlue);
     }
 	
-	private void grabarValores(float newOficialbuy, float newOficialSell, float newBlueBuy, float newBlueSell, float oldOficialbuy, float oldOficialSell, float oldBlueBuy, float oldBlueSell, long timestamp) {
+	private void grabarValores(float newOficialbuy, float newOficialSell, float newBlueBuy, float newBlueSell, float oldOficialbuy, float oldOficialSell, float oldBlueBuy, float oldBlueSell, long timestamp, String averageOficial, String averageBlue) {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 		Editor editor = sharedPreferences.edit();
 		editor.putFloat("newOficialbuy", newOficialbuy);
@@ -304,6 +311,9 @@ public class ValueTab extends Fragment{
 		editor.putFloat("oldBlueBuy", oldBlueBuy);
 		editor.putFloat("oldBlueSell", oldBlueSell);
 		editor.putLong("timestamp", timestamp);
+		editor.putString("averageOficial", averageOficial);
+		editor.putString("averageBlue", averageBlue);
 		editor.commit();
 	}
+
 }
