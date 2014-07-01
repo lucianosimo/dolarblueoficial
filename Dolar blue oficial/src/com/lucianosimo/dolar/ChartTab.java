@@ -62,6 +62,11 @@ public class ChartTab extends Fragment{
     	SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     	averageOficial = sharedPreferences.getString("averageOficial", "");
 		averageBlue = sharedPreferences.getString("averageBlue", "");
+		
+		if (averageOficial.equals("")) {
+			averageOficial = "0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0";
+			averageBlue = "0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0";
+		}
     	
         int[] x = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
         String[] splitedOficial = averageOficial.split(";");
