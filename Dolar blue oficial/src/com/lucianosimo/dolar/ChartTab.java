@@ -67,15 +67,16 @@ public class ChartTab extends Fragment{
 			averageOficial = "0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0";
 			averageBlue = "0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0";
 		}
-    	
+		
         int[] x = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
         String[] splitedOficial = averageOficial.split(";");
         String[] splitedBlue = averageBlue.split(";");
-
-        for (int i = 0; i < splitedOficial.length; i++) {
-        	oficialY[i] = Double.parseDouble(splitedOficial[i]);
-        	blueY[i] = Double.parseDouble(splitedBlue[i]);
+        
+        for (int i = splitedOficial.length - 12, j = 0; i < splitedOficial.length; i++, j++) {
+        	oficialY[j] = Double.parseDouble(splitedOficial[i]);
+        	blueY[j] = Double.parseDouble(splitedBlue[i]);
         }
+
         serieOficial = new TimeSeries("Valor promedio oficial (ultimos 12 meses)");
         for (int i = 0; i < x.length; i++) {
         	serieOficial.add(x[i], oficialY[i]);
@@ -116,7 +117,7 @@ public class ChartTab extends Fragment{
         mSeriesRendered.setXAxisMin(0.0);
         mSeriesRendered.setXAxisMax(13.0);
         mSeriesRendered.setYAxisMin(5.0);
-        mSeriesRendered.setYAxisMax(12.0);
+        mSeriesRendered.setYAxisMax(13.0);
         mSeriesRendered.setXLabelsColor(Color.BLACK);
         mSeriesRendered.setYLabelsColor(0, Color.BLACK);
         mSeriesRendered.setYLabelsAlign(Align.RIGHT);
